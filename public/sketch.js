@@ -12,11 +12,12 @@ async function sendVector() {
   for (let i = 0; i < 512; i++) {
     vector[i] = random(-1, 1);
   }
-  
-  
   const inputs = {
     z: vector
   };
+  
+  
+  
   const data = {
     method: "POST",
     headers: { "Content-Type": "application/json" },
