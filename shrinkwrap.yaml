@@ -1,6 +1,13 @@
 dependencies:
+  '@runwayml/hosted-models': 0.3.0
   express: 4.17.1
 packages:
+  /@runwayml/hosted-models/0.3.0:
+    dependencies:
+      axios: 0.19.2
+    dev: false
+    resolution:
+      integrity: sha512-7KksUNeiiSIHMQ8AhfWUaugfESyEY4iSwi+jCdwKUdX2fRM7MEKM+r2SSHRzUKiU1loGDT8ZZ9DXnL6oI7zslQ==
   /accepts/1.3.7:
     dependencies:
       mime-types: 2.1.25
@@ -14,6 +21,12 @@ packages:
     dev: false
     resolution:
       integrity: sha1-ml9pkFGx5wczKPKgCJaLZOopVdI=
+  /axios/0.19.2:
+    dependencies:
+      follow-redirects: 1.5.10
+    dev: false
+    resolution:
+      integrity: sha512-fjgm5MvRHLhx+osE2xoekY70AhARk3a6hkN+3Io1jc00jtquGvxYlKlsFUhmUET0V5te6CcZI7lcv2Ym61mjHA==
   /body-parser/1.19.0:
     dependencies:
       bytes: 3.1.0
@@ -67,6 +80,12 @@ packages:
     dev: false
     resolution:
       integrity: sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA==
+  /debug/3.1.0:
+    dependencies:
+      ms: 2.0.0
+    dev: false
+    resolution:
+      integrity: sha512-OX8XqP7/1a9cqkxYw2yXss15f26NKWBpDXQd0/uK/KPqdQhxbPa994hnzjcE2VqQpDslf55723cKPUOGSmMY3g==
   /depd/1.1.2:
     dev: false
     engines:
@@ -148,6 +167,14 @@ packages:
       node: '>= 0.8'
     resolution:
       integrity: sha512-aAWcW57uxVNrQZqFXjITpW3sIUQmHGG3qSb9mUah9MgMC4NeWhNOlNjXEYq3HjRAvL6arUviZGGJsBg6z0zsWA==
+  /follow-redirects/1.5.10:
+    dependencies:
+      debug: 3.1.0
+    dev: false
+    engines:
+      node: '>=4.0'
+    resolution:
+      integrity: sha512-0V5l4Cizzvqt5D44aTXbFZz+FtyXV1vrDN6qrelxtfYQKW0KO0W2T/hkE8xvGa/540LkZlkaUjO4ailYTFtHVQ==
   /forwarded/0.1.2:
     dev: false
     engines:
@@ -393,4 +420,5 @@ registry: 'https://registry.npmjs.org/'
 shrinkwrapMinorVersion: 9
 shrinkwrapVersion: 3
 specifiers:
+  '@runwayml/hosted-models': ^0.3.0
   express: ^4.17.1

@@ -6,12 +6,14 @@ function setup() {
 }
 
 async function sendVector() {
-  console.log("got image");
+  console.log("sending image");
 
   let vector = [];
   for (let i = 0; i < 512; i++) {
     vector[i] = random(-1, 1);
   }
+  
+  
   const inputs = {
     z: vector
   };
@@ -23,6 +25,9 @@ async function sendVector() {
   const response = await fetch("runwayml", data);
   const outputs = await response.json();
   const image64 = outputs.image;
+  
+  
+  
   console.log("got image");
   let skyImage = createImg(image64, "StyleGAN generated sky", function() {
     skyImage.hide();
