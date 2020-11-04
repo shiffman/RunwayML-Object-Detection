@@ -1,11 +1,13 @@
 function setup() {
-  createCanvas(200, 200);
+  createCanvas(640, 480);
   background(0);
   let generateButton = createButton("generate");
   generateButton.mousePressed(sendVector);
 }
 
 async function sendVector() {
+  console.log("got image");
+
   let vector = [];
   for (let i = 0; i < 512; i++) {
     vector[i] = random(-1, 1);
@@ -13,17 +15,17 @@ async function sendVector() {
   const inputs = {
     z: vector
   };
-
-  console.log(inputs);
-  const response = await fetch("runwayml", {
+  const data = {
     method: "POST",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json"
-    },
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify(inputs)
-  });
-
+  };
+  const response = await fetch("runwayml", data);
   const outputs = await response.json();
-  const { image } = outputs;
+  const image64 = outputs.image;
+  console.log("got image");
+  let skyImage = createImg(image64, "StyleGAN generated sky", function() {
+    skyImage.hide();
+    image(skyImage, 0, 0, width, height);
+  });
 }
