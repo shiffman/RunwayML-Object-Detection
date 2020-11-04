@@ -20,7 +20,8 @@ const model = new HostedModel({
 
 app.post('/runwayml', async (request, response) => {
   const inputs = request.body;
-  const outputs = await model.query(data);
+  console.log(inputs);
+  const outputs = await model.query(inputs);
   response.json(outputs);
 });
 
