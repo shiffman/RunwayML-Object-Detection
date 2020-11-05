@@ -9,8 +9,8 @@ console.log(`count: ${count}`);
 // Today!
 let day = new Date().getDay();
 checkDay();
-// Check once per hour
-setInterval(checkDay, 1000 * 60 * 60);
+// Check once every minute
+setInterval(checkDay, 1000 * 60);
 
 function checkDay() {
   let now = new Date().getDay();
@@ -20,7 +20,8 @@ function checkDay() {
     console.log("resetting count!");
     count = 0;
   }
-  fs.writeFileSync("count.json", JSON.stringify({ count }));
+  console.log("writing out count");
+  fs.writeFileSync("count.json", JSON.stringify({ count }), "utf-8");
 }
 
 // A daily limit of 100 is $1.00 per day
@@ -46,14 +47,19 @@ const model = new HostedModel({
   token: process.env.RUNWAYTOKEN
 });
 
+app.get("/count", async (request, response) => {
+  response.json({ count });
+});
+
 app.post("/runwayml", async (request, response) => {
   console.log(count);
   if (count < DAILYLIMIT) {
     const inputs = request.body;
     count++;
     const outputs = await model.query(inputs);
+    outputs.status = "success";
     response.json(outputs);
   } else {
-    response.json({ status: "daily limited reached" });
+    response.json({ status: "limit" });
   }
 });
