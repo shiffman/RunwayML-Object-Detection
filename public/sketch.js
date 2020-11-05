@@ -17,7 +17,6 @@ async function sendVector() {
   };
   
   
-  
   const data = {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -26,8 +25,6 @@ async function sendVector() {
   const response = await fetch("runwayml", data);
   const outputs = await response.json();
   const image64 = outputs.image;
-  
-  
   
   console.log("got image");
   let skyImage = createImg(image64, "StyleGAN generated sky", function() {
