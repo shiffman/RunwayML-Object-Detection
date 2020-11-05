@@ -12,7 +12,6 @@ checkDay();
 // Check once per hour
 setInterval(checkDay, 1000 * 60 * 60);
 
-
 function checkDay() {
   let now = new Date().getDay();
   // Is it tomorrow?
@@ -25,7 +24,8 @@ function checkDay() {
 }
 
 // A daily limit of 100 is $1.00 per day
-const DAILYLIMIT = process.env.DAILYLIMIT;
+const DAILYLIMIT = parseInt(process.env.DAILYLIMIT);
+console.log(DAILYLIMIT);
 
 // RunwayML communication
 const { HostedModel } = require("@runwayml/hosted-models");
@@ -47,6 +47,7 @@ const model = new HostedModel({
 });
 
 app.post("/runwayml", async (request, response) => {
+  console.log(count);
   if (count < DAILYLIMIT) {
     const inputs = request.body;
     count++;

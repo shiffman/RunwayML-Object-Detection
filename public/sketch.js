@@ -16,7 +16,6 @@ async function sendVector() {
     z: vector
   };
   
-  
   const data = {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -24,9 +23,14 @@ async function sendVector() {
   };
   const response = await fetch("runwayml", data);
   const outputs = await response.json();
-  const image64 = outputs.image;
   
-  console.log("got image");
+  // If we get something back with no image
+  if (!outputs.image) {
+    console.log('daily limit reached');
+    return;
+  }
+  
+  const image64 = outputs.image;
   let skyImage = createImg(image64, "StyleGAN generated sky", function() {
     skyImage.hide();
     image(skyImage, 0, 0, width, height);
