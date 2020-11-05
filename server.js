@@ -21,3 +21,22 @@ app.post("/runwayml", async (request, response) => {
   const outputs = await model.query(inputs);
   response.json(outputs);
 });
+
+
+// Extra code for checking # of requests per day
+// this can be useful for budgeting
+
+let count = 0;
+let day = new Date().getDay();
+checkDay();
+setInterval(checkDay, 1000 * 60 * 60);
+
+function checkDay() {
+  let now = new Date().getDay();
+  console.log(day, now);
+  if (day !== now) {
+    day = now;
+    console.log("resetting count");
+    count = 0;
+  }
+}
