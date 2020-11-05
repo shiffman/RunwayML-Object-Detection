@@ -47,5 +47,5 @@ async function updateCount() {
   let response = await fetch("count");
   let json = await response.json();
   console.log(json);
-  countSpan.html(` total requests: ${json.count);
+  countSpan.html(` count: ${json.count}`);
 }
