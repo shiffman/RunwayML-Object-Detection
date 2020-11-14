@@ -1,4 +1,5 @@
 const fs = require("fs");
+require("dotenv").config();
 
 // Extra code for checking # of requests per day
 // this can be useful for budgeting
@@ -8,21 +9,21 @@ console.log(`count: ${count}`);
 
 // Today!
 let day = new Date().getDay();
-checkDay();
+// checkDay();
 // Check once every minute
-setInterval(checkDay, 1000 * 60);
+// setInterval(checkDay, 1000 * 60);
 
-function checkDay() {
-  let now = new Date().getDay();
-  // Is it tomorrow?
-  if (day !== now) {
-    day = now;
-    console.log("resetting count!");
-    count = 0;
-  }
-  console.log("writing out count");
-  fs.writeFileSync("count.json", JSON.stringify({ count }), "utf-8");
-}
+// function checkDay() {
+//   let now = new Date().getDay();
+//   // Is it tomorrow?
+//   if (day !== now) {
+//     day = now;
+//     console.log("resetting count!");
+//     count = 0;
+//   }
+//   console.log("writing out count");
+//   fs.writeFileSync("count.json", JSON.stringify({ count }), "utf-8");
+// }
 
 // A daily limit of 100 is $1.00 per day
 const DAILYLIMIT = parseInt(process.env.DAILYLIMIT);
@@ -44,7 +45,13 @@ const listener = app.listen(process.env.PORT, () => {
 
 const model = new HostedModel({
   url: process.env.RUNWAYURL,
-  token: process.env.RUNWAYTOKEN
+  token: process.env.RUNWAYTOKEN,
+});
+
+console.log("querying model");
+model.info().then((info) => {
+  console.log("got info");
+  console.log(info);
 });
 
 app.get("/count", async (request, response) => {
