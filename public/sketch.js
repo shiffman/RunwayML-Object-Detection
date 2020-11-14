@@ -14,7 +14,7 @@ function setup() {
 }
 
 function draw() {
-  image(video, 0, 0, width, height);
+  image(video.get(), 0, 0, width, height);
 
   for (let i = 0; i < detections.length; i++) {
     let cube = detections[i];
