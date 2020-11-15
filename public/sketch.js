@@ -14,7 +14,8 @@ function setup() {
 }
 
 function draw() {
-  image(video, 0, 0, width, height);
+  // Issue related to: https://github.com/processing/p5.js/issues/4535#issuecomment-640072884
+  image(video.get(), 0, 0, width, height);
 
   for (let i = 0; i < detections.length; i++) {
     let cube = detections[i];
